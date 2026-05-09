@@ -54,7 +54,7 @@ jobs:
 
             - name: Print Manual Input
               run: |
-                echo "The value of the manual input 'user-name' is: ${{ github.event.inputs.username }}"
+                echo "The value of the manual input 'username' is: ${{ github.event.inputs.username || 'GitHub User' }}"
             
             - name: Print Environment Variables
               run: |

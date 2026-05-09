@@ -1,0 +1,20 @@
+name: My First WorkFlow
+
+on:
+  push:
+      - branches:
+            - main
+
+jobs:
+    
+    first-run:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout Repo Code
+              uses: actions/checkout@v6
+
+            - name: Run few commands
+              run: | 
+                echo "Hello, World!"
+                echo "This is my first workflow"

@@ -19,3 +19,8 @@ jobs:
                 echo "Hello, World!"
                 echo "This is my first workflow"
                 echo "This is my current path:" && pwd
+                echo "This is the list of files in the current directory:" && ls -la
+            - name: Run my script
+              run: |
+                chmod +x ./scripts/tb-myfirst-script.sh
+                ./scripts/tb-myfirst-script.sh

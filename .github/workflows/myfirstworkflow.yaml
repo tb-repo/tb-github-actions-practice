@@ -65,4 +65,4 @@ jobs:
             - name: Print Secrets and Variables
               run: |
                 echo "Printing my first repository secret ${{ secrets.MY_FIRST_SECRET }}"
-                echo "Printing my first repository variable ${{ variables.MY_FIRST_VARIABLE }}"
+                echo "Printing my first repository variable ${{ vars.MY_FIRST_VARIABLE }}"

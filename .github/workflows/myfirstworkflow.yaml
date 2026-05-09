@@ -3,7 +3,7 @@ name: My First WorkFlow
 on:
   workflow_dispatch: # This allows you to manually trigger the workflow from the GitHub Actions tab in your repository.
     inputs:
-      user-name:
+      username:
         type: string
         description: 'My manual input' # Description of the input field
         required: true # This input is required
@@ -54,7 +54,7 @@ jobs:
 
             - name: Print Manual Input
               run: |
-                echo "The value of the manual input 'user-name' is: ${{ github.event.inputs.user-name }}"
+                echo "The value of the manual input 'user-name' is: ${{ github.event.inputs.username }}"
             
             - name: Print Environment Variables
               run: |

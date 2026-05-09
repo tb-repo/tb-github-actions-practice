@@ -1,6 +1,14 @@
 name: My First WorkFlow
 
 on:
+  workflow_dispatch: # This allows you to manually trigger the workflow from the GitHub Actions tab in your repository.
+    inputs:
+      name:
+        my input:
+          type: string
+          description: 'My manual input' # Description of the input field
+          required: true # This input is required
+          default: 'GitHub User' # Default value for the input field
   push:
       branches:
           - main
@@ -37,4 +45,8 @@ jobs:
                 echo "Branch Ref: ${{ github.ref }}"
                 echo "CommitSHA: ${{ github.sha }}"
                 echo "Workflow Path: ${{ github.workflow_path }}"
-                
+
+            -name: Print Manual Input
+             run: |
+                echo "The value of the manual input 'name' is: ${{ github.event.inputs.name }}"
+

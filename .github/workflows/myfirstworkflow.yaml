@@ -46,7 +46,7 @@ jobs:
                 echo "CommitSHA: ${{ github.sha }}"
                 echo "Workflow Path: ${{ github.workflow_path }}"
 
-            -name: Print Manual Input
-             run: |
+            - name: Print Manual Input
+              run: |
                 echo "The value of the manual input 'name' is: ${{ github.event.inputs.name }}"
 

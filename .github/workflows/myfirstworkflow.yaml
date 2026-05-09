@@ -2,8 +2,8 @@ name: My First WorkFlow
 
 on:
   push:
-      - branches:
-            - main
+      branches:
+          - main
 
 jobs:
     
@@ -18,3 +18,4 @@ jobs:
               run: | 
                 echo "Hello, World!"
                 echo "This is my first workflow"
+                echo "This is my current path:" && pwd

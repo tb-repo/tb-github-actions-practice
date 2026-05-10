@@ -1,4 +1,5 @@
 name: Multi Environment Workflow
+run-name: Deploy to ${{ inputs.environment }}
 
 on:
     workflow_dispatch:
@@ -15,7 +16,7 @@ on:
 
 jobs:
 
-    multi-env-run-${{ inputs.environment }}:
+    multi-env-run:
         runs-on: ubuntu-latest
         environment: ${{ inputs.environment }}
         steps:

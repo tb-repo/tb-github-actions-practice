@@ -1,0 +1,69 @@
+name: Multi Environment Workflow
+
+on:
+    workflow_dispatch:
+        inputs:
+            environment:
+                description: "Select the environment to deploy to"
+                required: true
+                type: choice
+                options:
+                    - DEV
+                    - STG
+                    - PRD
+                default: DEV
+
+jobs:
+
+    multi-env-run-${{ inputs.environment }}:
+        runs-on: ubuntu-latest
+        environment: ${{ inputs.environment }}
+        steps:
+
+            - name: Checkout Repository
+              uses: actions/checkout@v6
+
+            - name: Deploy to Environment - ${{ inputs.environment }}
+              run: |
+                echo "Deploying to ${{ inputs.environment }} environment"
+                # Add your deployment commands here based on the selected environment
+                if [ "${{ inputs.environment }}" == "DEV" ]; then
+                    echo "Running deployment script for DEV environment"
+                    echo "These are global variables accessible in all environments: ${{ vars.MY_FIRST_VARIABLE }} "
+                    echo "This is the DEV environment. My variable is ${{ vars.DEV_VAR }}"
+                elif [ "${{ inputs.environment }}" == "STG" ]; then
+                    echo "Running deployment script for STG environment"
+                    echo "These are global variables accessible in all environments: ${{ vars.MY_FIRST_VARIABLE }} "
+                    echo "This is the STG environment. My variable is ${{ vars.STG_VAR }}"
+                elif [ "${{ inputs.environment }}" == "PRD" ]; then
+                    echo "Running deployment script for PRD environment"
+                    echo "These are global variables accessible in all environments: ${{ vars.MY_FIRST_VARIABLE }} "
+                    echo "This is the PRD environment. My variable is ${{ vars.PRD_VAR }}"
+                else
+                    echo "Invalid environment selected"
+                    exit 1
+                fi
+
+            - name: Env Context Information
+              run: |
+                echo "============================================"
+                echo "  SELECTED ENVIRONMENT: ${{ inputs.environment }}"
+                echo "============================================"
+
+            - name: If DEV, print DEV specific info
+              if: ${{ inputs.environment == 'DEV' }}
+              run: |
+                echo "These are global variables accessible in all environments: ${{ vars.MY_FIRST_VARIABLE }} "
+                echo "This is the DEV environment. My variable is ${{ vars.DEV_VAR }}."
+
+            - name: If STG, print STG specific info
+              if: ${{ inputs.environment == 'STG' }}
+              run: |
+                echo "These are global variables accessible in all environments: ${{ vars.MY_FIRST_VARIABLE }} "
+                echo "This is the STG environment. My variable is ${{ vars.STG_VAR }}."
+
+            - name: If PRD, print PRD specific info
+              if: ${{ inputs.environment == 'PRD' }}
+              run: |
+                echo "These are global variables accessible in all environments: ${{ vars.MY_FIRST_VARIABLE }} "
+                echo "This is the PRD environment. My variable is ${{ vars.PRD_VAR }}."

@@ -17,6 +17,7 @@ on:
 jobs:
 
     multi-env-run:
+        name: Deploy-${{ inputs.environment }}
         runs-on: ubuntu-latest
         environment: ${{ inputs.environment }}
         steps:
@@ -31,15 +32,18 @@ jobs:
                 if [ "${{ inputs.environment }}" == "DEV" ]; then
                     echo "Running deployment script for DEV environment"
                     echo "These are global variables accessible in all environments: ${{ vars.MY_FIRST_VARIABLE }} "
-                    echo "This is the DEV environment. My variable is ${{ vars.DEV_VAR }}"
+                    echo "This is the DEV environment variable:" 
+                    echo "DEV_VAR = ${{ vars.DEV_VAR }}"
                 elif [ "${{ inputs.environment }}" == "STG" ]; then
                     echo "Running deployment script for STG environment"
                     echo "These are global variables accessible in all environments: ${{ vars.MY_FIRST_VARIABLE }} "
-                    echo "This is the STG environment. My variable is ${{ vars.STG_VAR }}"
+                    echo "This is the STG environment variable:" 
+                    echo "STG_VAR = ${{ vars.STG_VAR }}"
                 elif [ "${{ inputs.environment }}" == "PRD" ]; then
                     echo "Running deployment script for PRD environment"
                     echo "These are global variables accessible in all environments: ${{ vars.MY_FIRST_VARIABLE }} "
-                    echo "This is the PRD environment. My variable is ${{ vars.PRD_VAR }}"
+                    echo "This is the PRD environment variable:" 
+                    echo "PRD_VAR = ${{ vars.PRD_VAR }}"
                 else
                     echo "Invalid environment selected"
                     exit 1
@@ -54,17 +58,23 @@ jobs:
             - name: If DEV, print DEV specific info
               if: ${{ inputs.environment == 'DEV' }}
               run: |
-                echo "These are global variables accessible in all environments: ${{ vars.MY_FIRST_VARIABLE }} "
-                echo "This is the DEV environment. My variable is ${{ vars.DEV_VAR }}."
+                echo "These are global variables accessible in all environments:"
+                echo "MY_FIRST_VARIABLE = ${{ vars.MY_FIRST_VARIABLE }}"
+                echo "This is the DEV environment variable:" 
+                echo "DEV_VAR = ${{ vars.DEV_VAR }}"
 
             - name: If STG, print STG specific info
               if: ${{ inputs.environment == 'STG' }}
               run: |
-                echo "These are global variables accessible in all environments: ${{ vars.MY_FIRST_VARIABLE }} "
-                echo "This is the STG environment. My variable is ${{ vars.STG_VAR }}."
+                echo "These are global variables accessible in all environments:"
+                echo "MY_FIRST_VARIABLE = ${{ vars.MY_FIRST_VARIABLE }}"
+                echo "This is the STG environment variable:" 
+                echo "STG_VAR = ${{ vars.STG_VAR }}"
 
             - name: If PRD, print PRD specific info
               if: ${{ inputs.environment == 'PRD' }}
               run: |
-                echo "These are global variables accessible in all environments: ${{ vars.MY_FIRST_VARIABLE }} "
-                echo "This is the PRD environment. My variable is ${{ vars.PRD_VAR }}."
+                echo "These are global variables accessible in all environments:"
+                echo "MY_FIRST_VARIABLE = ${{ vars.MY_FIRST_VARIABLE }}"
+                echo "This is the PRD environment variable:" 
+                echo "PRD_VAR = ${{ vars.PRD_VAR }}"
